@@ -150,4 +150,4 @@ def get_unique_schema_name(components, name, *, schema, counter=0):
     else:  # subsequent recursions
         name = name[: -len(str(counter))]
     counter += 1
-    return get_unique_schema_name(components, name + str(counter), schema, counter=counter)
+    return get_unique_schema_name(components, name + str(counter), schema=schema, counter=counter)
