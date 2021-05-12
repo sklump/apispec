@@ -137,8 +137,8 @@ def get_unique_schema_name(components, name, counter=0):
         return name
     if not counter:  # first time through recursion
         import traceback
-        print('\n\n----------------')
-        traceback.print_stack(limit=32)
+        print(f'\n\n-- {name}: {counter}; components: {components} --')
+        traceback.print_stack()
         print('----------------\n')
         warnings.warn(
             "Multiple schemas resolved to the name {}. The name has been modified. "
