@@ -138,8 +138,8 @@ def get_unique_schema_name(components, name, *, schema, counter=0):
     if not counter:  # first time through recursion
         print('\n\n----------------')
         print(f'{name}#{counter}: {schema}')
-        z = [k for k in schema.__class__.__dict__.keys() if not k.startswith('__')]
-        print(z)
+        decls = schema.__class__.__dict__["_declared_fields"]
+        print(decls)
         print('----------------\n')
         warnings.warn(
             "Multiple schemas resolved to the name {}. The name has been modified. "
