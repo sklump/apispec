@@ -123,7 +123,7 @@ def make_schema_key(schema):
 SchemaKey = namedtuple("SchemaKey", ["SchemaClass"] + MODIFIERS)
 
 
-def get_unique_schema_name(components, name, counter=0):
+def get_unique_schema_name(components, name, *, schema, counter=0):
     """Function to generate a unique name based on the provided name and names
     already in the spec.  Will append a number to the name to make it unique if
     the name is already in the spec.
@@ -137,11 +137,9 @@ def get_unique_schema_name(components, name, counter=0):
         return name
     if not counter:  # first time through recursion
         print('\n\n----------------')
-        print(f'{name}#{counter}')
+        print(f'{name}#{counter}: {schema}')
         print('----------------\n')
-        import traceback
-        traceback.print_stack()
-        print('----------------\n')
+        assert False
         warnings.warn(
             "Multiple schemas resolved to the name {}. The name has been modified. "
             "Either manually add each of the schemas with a different name or "
@@ -151,4 +149,4 @@ def get_unique_schema_name(components, name, counter=0):
     else:  # subsequent recursions
         name = name[: -len(str(counter))]
     counter += 1
-    return get_unique_schema_name(components, name + str(counter), counter)
+    return get_unique_schema_name(components, name + str(counter), counter=counter)

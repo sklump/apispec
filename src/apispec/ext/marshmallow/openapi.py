@@ -105,7 +105,7 @@ class OpenAPIConverter(FieldConverterMixin):
                 if getattr(schema, "many", False):
                     return {"type": "array", "items": json_schema}
                 return json_schema
-            name = get_unique_schema_name(self.spec.components, name)
+            name = get_unique_schema_name(self.spec.components, name, schema=schema)
             self.spec.components.schema(name, schema=schema)
         return self.get_ref_dict(schema_instance)
 
