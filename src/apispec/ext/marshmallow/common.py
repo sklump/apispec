@@ -137,7 +137,7 @@ def get_unique_schema_name(components, name, counter=0):
         return name
     if not counter:  # first time through recursion
         import traceback
-        print(f'\n\n-- {name}: {counter}; components: {components} --')
+        print(f'\n\n-- {name}#{counter}\n.. components {components.to_dict()}')
         traceback.print_stack()
         print('----------------\n')
         warnings.warn(
