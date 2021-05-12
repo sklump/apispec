@@ -136,8 +136,11 @@ def get_unique_schema_name(components, name, counter=0):
     if name not in components._schemas:
         return name
     if not counter:  # first time through recursion
-        defs = [k for k in components.to_dict()["definitions"]]
-        print(f'\n\n-- {name}#{counter}\n.. {defs}')
+        print('\n\n----------------')
+        print(f'{name}#{counter}')
+        print('----------------\n')
+        import traceback
+        traceback.print_stack()
         print('----------------\n')
         warnings.warn(
             "Multiple schemas resolved to the name {}. The name has been modified. "
